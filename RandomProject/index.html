@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/intro.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+    <script src="js/popper.min.js" ></script>
+    <script src="js/typed.js" ></script>
+    <script src="js/bootstrap.min.js" ></script>
+    <script src="js/moment-with-locales.js" ></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Apa lah ini?</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Sumber Gambar</a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Pagi - Photo by Federico Respini on Unsplash</a>
+              <a class="dropdown-item" href="#">Siang - Photo by armin djuhic on Unsplash</a>
+              <a class="dropdown-item" href="#">Sore - Photo by freestocks on Unsplash</a>
+              <a class="dropdown-item" href="#">Malam - Photo by Irina Iriser on Unsplash</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End of Navbar-->
+  <div id="intro" class="view">
+    <div class="mask">
+      <div class="row2 h-100">
+        <div class="col-sm-12 my-auto" id='bg'>
+            <p class='text-white font-italic text-center' id='coba'>aaaa</p>
+            <p class='text-white font-italic text-center' id='date-part'>aaaa</p>
+            <h1 class='display-1 text-center text-white' id="time-part">07:00:00</h1>
+            <p class='text-white font-italic text-center' id='selamat'> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var jam = 0;
+    var hari;
+    var ucap;
+    $(document).ready(function() {
+    var interval = setInterval(function() {
+        var momentNow = moment();
+        if(momentNow.format('dddd') == 'Sunday') {
+          hari = 'Minggu';
+        } else if(momentNow.format('dddd') == 'Monday') {
+          hari = 'Senin';
+        } else if(momentNow.format('dddd') == 'Tuesday') {
+          hari = 'Selasa';
+        } else if(momentNow.format('dddd') == 'Wednesday') {
+          hari = 'Rabu';
+        } else if(momentNow.format('dddd') == 'Thursday') {
+          hari = 'Kamis';
+        } else if(momentNow.format('dddd') == 'Friday') {
+          hari = 'Jumat';
+        } else if(momentNow.format('dddd') == 'Thursday') {
+          hari = 'Sabtu';
+        }
+        $('#date-part').html( hari + ', '
+                            + momentNow.format('DD MMMM YYYY')
+                             );
+        $('#time-part').html(momentNow.format('HH:mm:ss'));
+        jam = momentNow.format('HH');
+        jam = parseInt(jam);
+        if(jam >= 5 && jam <= 9) {
+          ucap = 'Selamat Pagii!! Have a Nice Day :)';
+          //$('#selamat').html(ucap);
+          $('#intro').css({
+            'background': 'url("img/pagi.jpg")no-repeat center center fixed',
+            '-webkit-background-size' : 'cover',
+            '-moz-background-size' : 'cover',
+            '-o-background-size' : 'cover',
+            'background-size' : 'cover'
+          });
+        } else if (jam >= 10 && jam <= 13) {
+          ucap = 'Selamat Siangg!! Semangatt sm Jangan Lupa Nanti Makann';
+          //$('#selamat').html(ucap);
+          $('#intro').css({
+            'background': 'url("img/siang.jpg")no-repeat center center fixed',
+            '-webkit-background-size' : 'cover',
+            '-moz-background-size' : 'cover',
+            '-o-background-size' : 'cover',
+            'background-size' : 'cover'
+          });
+        } else if (jam >= 14 && jam <= 17) {
+          ucap = 'Selamat Soree!! Gimanaa Kegiatan Hari Ini?';
+          //$('#selamat').html(ucap);
+          $('#intro').css({
+            'background': 'url("img/sore.jpg")no-repeat center center fixed',
+            '-webkit-background-size' : 'cover',
+            '-moz-background-size' : 'cover',
+            '-o-background-size' : 'cover',
+            'background-size' : 'cover'
+          });
+        } else {
+          ucap = 'Selamat Malemm!! Ingett Istirahat Dulu tuhh, Cape kann Ngga Usah Begadang';
+          //$('#selamat').html(ucap);
+          $('#intro').css({
+            'background': 'url("img/malam.jpg")no-repeat center center fixed',
+            '-webkit-background-size' : 'cover',
+            '-moz-background-size' : 'cover',
+            '-o-background-size' : 'cover',
+            'background-size' : 'cover'
+          });
+        }
+    }, 100);
+  });
+
+  var momentNow = moment();
+  jam = momentNow.format('HH');
+  if(jam >= 5 && jam <= 9) {
+      ucap = 'Selamat Pagii!! Have a Nice Day :)';
+      var options = {
+        strings: [' ', ucap],
+        typeSpeed: 90
+      };
+      var typed = new Typed('#coba', options);
+    } else if (jam >= 10 && jam <= 13) {
+      ucap = 'Selamat Siangg!! Semangatt sm Jangan Lupa Nanti Makann';
+      var options = {
+        strings: [' ', ucap],
+        typeSpeed: 90
+      };
+      var typed = new Typed('#coba', options);
+    } else if (jam >= 14 && jam <= 17) {
+      ucap = 'Selamat Soree!! Gimanaa Kegiatan Hari Ini?';
+      var options = {
+        strings: [' ', ucap],
+        typeSpeed: 90
+      };
+      var typed = new Typed('#coba', options);
+    } else {
+      ucap = 'Selamat Malemm!! Ingett Istirahat Dulu tuhh, Cape kann Ngga Usah Begadang';
+      var options = {
+        strings: [' ', ucap],
+        typeSpeed: 90
+      };
+      var typed = new Typed('#coba', options);
+    }
+
+  
+  </script>
+  </body>
+</html>
